@@ -1,0 +1,43 @@
+What is a container?
+
+we can package application with all the necessary dependencies and the configuration.
+
+Portable,artifact , easily shared and moved around.
+
+containers are portable.
+
+It has repository
+
+-----------------------------
+1. Download docker desktop for windows/mac/linux
+2. https://learn.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package
+3. Make windows subsystem enable for Linux
+open windows power shell ->run as administrator
+paste below command in cmd
+
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+
+4.Check requirements for running WSL 2
+
+To update to WSL 2, you must be running Windows 10...
+
+    For x64 systems: Version 1903 or later, with Build 18362 or later.
+    For ARM64 systems: Version 2004 or later, with Build 19041 or later.
+
+or Windows 11.
+
+5. Enable Virtual Machine feature
+
+enter below command in windows power shell
+
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+
+6. Download the Linux kernel update package
+
+Download the latest package:
+
+https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
+
+open exe file to make setup 
+
+7. Restart the docker desktop app
