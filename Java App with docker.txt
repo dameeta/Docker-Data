@@ -1,0 +1,72 @@
+step 1:
+write a myclass.java file and keep it in dd folder
+
+public class myclass{
+
+
+    public static void main(String [] args)
+    {
+
+        System.out.println("Getting message from hello java app....");
+    }
+}
+
+Step 2:
+====================================================
+Create a Dockerfile and keep that in same folder where you kept javafile I created dd folder and kept both files
+add below content in Dockerfile
+
+FROM openjdk:8  
+COPY . app/java  
+WORKDIR app/java  
+RUN javac myclass.java  
+CMD ["java", "myclass"]
+
+=========================================================
+Step 3: Open Cmd and go to working directory and type below command
+
+F:\dd>docker build -t java-app .
+Sending build context to Docker daemon  3.072kB
+Step 1/5 : FROM openjdk:8
+ ---> b273004037cc
+Step 2/5 : COPY . app/java
+ ---> 38562ee4eaaa
+Step 3/5 : WORKDIR app/java
+ ---> Running in 2a4612c9f2c5
+Removing intermediate container 2a4612c9f2c5
+ ---> ee749bea9205
+Step 4/5 : RUN javac myclass.java
+ ---> Running in 341b0dbd8d3a
+Removing intermediate container 341b0dbd8d3a
+ ---> bec81976d724
+Step 5/5 : CMD ["java", "myclass"]
+ ---> Running in cae28d51fba2
+Removing intermediate container cae28d51fba2
+ ---> 38e92d433b8d
+Successfully built 38e92d433b8d
+Successfully tagged java-app:latest
+SECURITY WARNING: You are building a Docker image from Windows against a non-Windows Docker host. All files and directories added to build context will have '-rwxr-xr-x' permissions. It is recommended to double check and reset permissions for sensitive files and directories.
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+
+
+Step 4:
+Now run the java app  by typing below command you will see the oupput of the java program on console.
+
+F:\dd>docker run java-app
+Getting message from hello java app....
+
+Note: also in settings of docker engine make buildkit:false instead of true.
+
+{
+  "builder": {
+    "gc": {
+      "defaultKeepStorage": "20GB",
+      "enabled": true
+    }
+  },
+  "experimental": false,
+  "features": {
+    "buildkit": false
+  }
+}
